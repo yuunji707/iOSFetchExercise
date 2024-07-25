@@ -19,6 +19,7 @@
 		AB84C26D2C523B5600ED75ED /* MealsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB84C26C2C523B5600ED75ED /* MealsViewModel.swift */; };
 		AB84C26F2C523B7800ED75ED /* MealDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB84C26E2C523B7800ED75ED /* MealDetailViewModel.swift */; };
 		AB84C2712C523BD400ED75ED /* MealDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB84C2702C523BD400ED75ED /* MealDetailView.swift */; };
+		AB84C2732C524EA000ED75ED /* MealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB84C2722C524EA000ED75ED /* MealView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		AB84C26C2C523B5600ED75ED /* MealsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsViewModel.swift; sourceTree = "<group>"; };
 		AB84C26E2C523B7800ED75ED /* MealDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewModel.swift; sourceTree = "<group>"; };
 		AB84C2702C523BD400ED75ED /* MealDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailView.swift; sourceTree = "<group>"; };
+		AB84C2722C524EA000ED75ED /* MealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				AB84C2702C523BD400ED75ED /* MealDetailView.swift */,
+				AB84C2722C524EA000ED75ED /* MealView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				AB84C23D2C52379300ED75ED /* ContentView.swift in Sources */,
 				AB84C2692C52384000ED75ED /* MealModel.swift in Sources */,
 				AB84C23B2C52379300ED75ED /* iOSFetchExerciseApp.swift in Sources */,
+				AB84C2732C524EA000ED75ED /* MealView.swift in Sources */,
 				AB84C26D2C523B5600ED75ED /* MealsViewModel.swift in Sources */,
 				AB84C2712C523BD400ED75ED /* MealDetailView.swift in Sources */,
 				AB84C26F2C523B7800ED75ED /* MealDetailViewModel.swift in Sources */,

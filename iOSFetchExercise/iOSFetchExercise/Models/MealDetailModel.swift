@@ -7,6 +7,9 @@
 
 import Foundation
 
+// MARK: - MealDetailModel
+
+/// Represents detailed information about a meal
 struct MealDetailModel: Identifiable, Codable {
     let idMeal: String
     let strMeal: String
@@ -17,14 +20,19 @@ struct MealDetailModel: Identifiable, Codable {
     let strTags: String?
     let strArea: String?
     
+    // Store ingredient-measure pairs
     private var ingredientMeasures: [String: String]
     
+    // Conform to Identifiable protocol
     var id: String { idMeal }
+    
+    // MARK: - Codable
     
     enum CodingKeys: String, CodingKey {
         case idMeal, strMeal, strInstructions, strMealThumb, strYoutube, strSource, strTags, strArea
     }
     
+    // Custom decoding to handle dynamic ingredient and measure keys
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         idMeal = try container.decode(String.self, forKey: .idMeal)
@@ -36,6 +44,7 @@ struct MealDetailModel: Identifiable, Codable {
         strTags = try container.decodeIfPresent(String.self, forKey: .strTags)
         strArea = try container.decodeIfPresent(String.self, forKey: .strArea)
         
+        // Decode dynamic ingredient-measure pairs
         ingredientMeasures = [:]
         let dynamicContainer = try decoder.container(keyedBy: DynamicCodingKeys.self)
         for i in 1...20 {
@@ -49,6 +58,7 @@ struct MealDetailModel: Identifiable, Codable {
         }
     }
     
+    // Custom encoding to handle dynamic ingredient and measure keys
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(idMeal, forKey: .idMeal)
@@ -60,6 +70,7 @@ struct MealDetailModel: Identifiable, Codable {
         try container.encodeIfPresent(strTags, forKey: .strTags)
         try container.encodeIfPresent(strArea, forKey: .strArea)
         
+        // Encode ingredient-measure pairs
         var dynamicContainer = encoder.container(keyedBy: DynamicCodingKeys.self)
         for (index, (ingredient, measure)) in ingredientMeasures.enumerated() {
             if let ingredientKey = DynamicCodingKeys(stringValue: "strIngredient\(index + 1)"),
@@ -79,15 +90,22 @@ struct MealDetailModel: Identifiable, Codable {
         }
     }
     
+    // MARK: - Computed Properties
+    
+    /// Returns sorted array of ingredient-measure pairs
     var ingredientsWithMeasurements: [(String, String)] {
         ingredientMeasures.map { ($0.key, $0.value) }.sorted(by: { $0.0 < $1.0 })
     }
     
+    /// Returns array of tags
     var tagsArray: [String] {
         strTags?.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? []
     }
 }
 
+// MARK: - DynamicCodingKeys
+
+/// Allows for dynamic coding keys when decoding/encoding JSON
 struct DynamicCodingKeys: CodingKey {
     var stringValue: String
     var intValue: Int?
@@ -102,6 +120,9 @@ struct DynamicCodingKeys: CodingKey {
     }
 }
 
+// MARK: - MealDetailResponse
+
+/// Wrapper struct for API response containing meal details
 struct MealDetailResponse: Codable {
     let meals: [MealDetailModel]
 }
