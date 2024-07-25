@@ -12,20 +12,18 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.meals) { meal in
-                NavigationLink(destination: MealDetailView(mealId: meal.idMeal)) {
-                    HStack {
-                        AsyncImage(url: URL(string: meal.strMealThumb)) { image in
-                            image.resizable()
-                        } placeholder: {
-                            ProgressView()
+            ZStack {
+                Color(.systemBackground).edgesIgnoringSafeArea(.all)
+                
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                        ForEach(viewModel.meals) { meal in
+                            NavigationLink(destination: MealDetailView(mealId: meal.idMeal)) {
+                                MealCard(meal: meal)
+                            }
                         }
-                        .frame(width: 50, height: 50)
-                        .cornerRadius(8)
-                        
-                        Text(meal.strMeal)
-                            .font(.headline)
                     }
+                    .padding()
                 }
             }
             .navigationTitle("Desserts")
@@ -38,6 +36,32 @@ struct ContentView: View {
                 Text(viewModel.errorMessage ?? "Unknown error")
             })
         }
+    }
+}
+
+struct MealCard: View {
+    let meal: MealModel
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            AsyncImage(url: URL(string: meal.strMealThumb)) { image in
+                image.resizable()
+                    .aspectRatio(contentMode: .fill)
+            } placeholder: {
+                ProgressView()
+            }
+            .frame(height: 150)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            
+            Text(meal.strMeal)
+                .font(.headline)
+                .lineLimit(2)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+        }
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(15)
+        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
     }
 }
 

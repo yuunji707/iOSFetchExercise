@@ -13,80 +13,100 @@ struct MealDetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 20) {
                 // Meal Image
                 AsyncImage(url: URL(string: viewModel.mealDetail?.strMealThumb ?? "")) { image in
                     image.resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fill)
                 } placeholder: {
                     ProgressView()
                 }
-                .cornerRadius(12)
+                .frame(height: 300)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .shadow(radius: 10)
                 
-                // Meal Name
-                Text(viewModel.mealDetail?.strMeal ?? "")
-                    .font(.title)
-                    .fontWeight(.bold)
-                
-                // Area
-                if let area = viewModel.mealDetail?.strArea {
-                    Text("Area: \(area)")
-                        .font(.subheadline)
-                }
-                
-                // Tags
-                if let tags = viewModel.mealDetail?.tagsArray, !tags.isEmpty {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(tags, id: \.self) { tag in
-                                Text(tag)
-                                    .padding(5)
-                                    .background(Color.blue.opacity(0.1))
-                                    .cornerRadius(5)
+                VStack(alignment: .leading, spacing: 16) {
+                    // Meal Name
+                    Text(viewModel.mealDetail?.strMeal ?? "")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    
+                    // Area
+                    if let area = viewModel.mealDetail?.strArea {
+                        Label(area, systemImage: "mappin.circle.fill")
+                            .font(.headline)
+                    }
+                    
+                    // Tags
+                    if let tags = viewModel.mealDetail?.tagsArray, !tags.isEmpty {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(tags, id: \.self) { tag in
+                                    Text(tag)
+                                        .padding(.horizontal, 10)
+                                        .padding(.vertical, 5)
+                                        .background(Color.blue.opacity(0.1))
+                                        .cornerRadius(20)
+                                }
                             }
                         }
                     }
-                }
-                
-                // YouTube Link
-                if let youtubeURL = viewModel.mealDetail?.strYoutube, let url = URL(string: youtubeURL) {
-                    Link("Watch on YouTube", destination: url)
+                    
+                    // YouTube Link
+                    if let youtubeURL = viewModel.mealDetail?.strYoutube, let url = URL(string: youtubeURL) {
+                        Link(destination: url) {
+                            Label("Watch on YouTube", systemImage: "play.circle.fill")
+                        }
+                        .font(.headline)
+                        .foregroundColor(.red)
+                    }
+                    
+                    // Source Link
+                    if let sourceURL = viewModel.mealDetail?.strSource, let url = URL(string: sourceURL) {
+                        Link(destination: url) {
+                            Label("View Recipe Source", systemImage: "link.circle.fill")
+                        }
                         .font(.headline)
                         .foregroundColor(.blue)
-                }
-                
-                // Source Link
-                if let sourceURL = viewModel.mealDetail?.strSource, let url = URL(string: sourceURL) {
-                    Link("View Recipe Source", destination: url)
-                        .font(.headline)
-                        .foregroundColor(.blue)
-                }
-                
-                // Instructions
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Instructions")
-                        .font(.title2)
-                        .fontWeight(.semibold)
+                    }
                     
-                    Text(viewModel.mealDetail?.strInstructions ?? "")
-                        .font(.body)
-                }
-                
-                // Ingredients
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Ingredients")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    
-                    ForEach(viewModel.mealDetail?.ingredientsWithMeasurements ?? [], id: \.0) { ingredient, measurement in
-                        Text("• \(measurement) \(ingredient)")
+                    // Instructions
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Instructions")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                        Text(viewModel.mealDetail?.strInstructions ?? "")
                             .font(.body)
                     }
+                    .padding()
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(15)
+                    
+                    // Ingredients
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Ingredients")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                        ForEach(viewModel.mealDetail?.ingredientsWithMeasurements ?? [], id: \.0) { ingredient, measurement in
+                            HStack {
+                                Text("•")
+                                Text(measurement)
+                                    .fontWeight(.semibold)
+                                Text(ingredient)
+                            }
+                            .font(.body)
+                        }
+                    }
+                    .padding()
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(15)
                 }
+                .padding()
             }
-            .padding()
         }
-        .navigationTitle("Meal Detail")
+        .navigationBarTitleDisplayMode(.inline)
         .task {
             await viewModel.fetchMealDetail(id: mealId)
         }
