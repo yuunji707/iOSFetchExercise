@@ -39,4 +39,15 @@ class MealsViewModel: ObservableObject {
             }
         }
     }
+    
+    /// Filters the meals based on the search text
+    /// - Parameter searchText: The text to filter meals by
+    /// - Returns: An array of filtered MealModel objects
+    func filteredMeals(searchText: String) -> [MealModel] {
+        if searchText.isEmpty {
+            return meals
+        } else {
+            return meals.filter { $0.strMeal.lowercased().contains(searchText.lowercased()) }
+        }
+    }
 }

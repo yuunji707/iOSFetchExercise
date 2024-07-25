@@ -1,4 +1,3 @@
-
 //
 //  MealView.swift
 //  iOSFetchExercise
@@ -8,26 +7,33 @@
 
 import SwiftUI
 
-/// A view displaying a grid of dessert meals
+/// A view displaying a grid of dessert meals with search functionality
 struct MealView: View {
     @StateObject private var viewModel = MealsViewModel()
+    @State private var searchText = ""
     
     var body: some View {
         ZStack {
             // Set the background color
             Color(.systemBackground).edgesIgnoringSafeArea(.all)
             
-            ScrollView {
-                // Create a grid layout for meal cards
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                    ForEach(viewModel.meals) { meal in
-                        // Navigate to meal detail view when tapped
-                        NavigationLink(destination: MealDetailView(mealId: meal.idMeal)) {
-                            MealCard(meal: meal)
+            VStack {
+                // Search bar
+                SearchBar(text: $searchText)
+                    .padding()
+                
+                ScrollView {
+                    // Create a grid layout for meal cards
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                        ForEach(viewModel.filteredMeals(searchText: searchText)) { meal in
+                            // Navigate to meal detail view when tapped
+                            NavigationLink(destination: MealDetailView(mealId: meal.idMeal)) {
+                                MealCard(meal: meal)
+                            }
                         }
                     }
+                    .padding()
                 }
-                .padding()
             }
         }
         .navigationTitle("Desserts")
@@ -41,6 +47,56 @@ struct MealView: View {
         }, message: {
             Text(viewModel.errorMessage ?? "Unknown error")
         })
+    }
+}
+
+/// A custom search bar view
+struct SearchBar: View {
+    @Binding var text: String
+    @State private var isEditing = false
+    
+    var body: some View {
+        HStack {
+            TextField("Search desserts...", text: $text)
+                .padding(10)
+                .padding(.horizontal, 30)
+                .background(Color(.systemGray6))
+                .cornerRadius(15)
+                .overlay(
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.gray)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 12)
+                        
+                        if isEditing {
+                            Button(action: {
+                                self.text = ""
+                            }) {
+                                Image(systemName: "multiply.circle.fill")
+                                    .foregroundColor(.gray)
+                                    .padding(.trailing, 12)
+                            }
+                        }
+                    }
+                )
+                .onTapGesture {
+                    self.isEditing = true
+                }
+            
+            if isEditing {
+                Button(action: {
+                    self.isEditing = false
+                    self.text = ""
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }) {
+                    Text("Cancel")
+                }
+                .padding(.trailing, 10)
+                .transition(.move(edge: .trailing))
+                .animation(.default, value: isEditing)
+            }
+        }
     }
 }
 
