@@ -104,7 +104,6 @@
 		AB84C2392C52379300ED75ED /* iOSFetchExercise */ = {
 			isa = PBXGroup;
 			children = (
-				AB84C2672C52381D00ED75ED /* Services */,
 				AB84C2662C52381500ED75ED /* Views */,
 				AB84C2652C52380E00ED75ED /* ViewModels */,
 				AB84C2642C52380600ED75ED /* Models */,
@@ -165,13 +164,6 @@
 				AB84C2702C523BD400ED75ED /* MealDetailView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		AB84C2672C52381D00ED75ED /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
