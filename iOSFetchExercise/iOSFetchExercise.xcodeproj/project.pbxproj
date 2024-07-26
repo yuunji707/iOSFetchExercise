@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB715F082C534FC200697898 /* MealModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F072C534FC200697898 /* MealModelTests.swift */; };
+		AB715F0A2C534FD000697898 /* MealDetailModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F092C534FD000697898 /* MealDetailModelTests.swift */; };
+		AB715F0C2C5351C800697898 /* MealViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F0B2C5351C800697898 /* MealViewModelTests.swift */; };
+		AB715F0E2C53525400697898 /* MealDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F0D2C53525400697898 /* MealDetailViewModelTests.swift */; };
+		AB715F112C53533A00697898 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F102C53533A00697898 /* URLSessionProtocol.swift */; };
+		AB715F132C5356E700697898 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F122C5356E700697898 /* MockURLSession.swift */; };
 		AB84C23B2C52379300ED75ED /* iOSFetchExerciseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB84C23A2C52379300ED75ED /* iOSFetchExerciseApp.swift */; };
 		AB84C23D2C52379300ED75ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB84C23C2C52379300ED75ED /* ContentView.swift */; };
 		AB84C23F2C52379D00ED75ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB84C23E2C52379D00ED75ED /* Assets.xcassets */; };
@@ -40,6 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB715F072C534FC200697898 /* MealModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModelTests.swift; sourceTree = "<group>"; };
+		AB715F092C534FD000697898 /* MealDetailModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailModelTests.swift; sourceTree = "<group>"; };
+		AB715F0B2C5351C800697898 /* MealViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModelTests.swift; sourceTree = "<group>"; };
+		AB715F0D2C53525400697898 /* MealDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewModelTests.swift; sourceTree = "<group>"; };
+		AB715F102C53533A00697898 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		AB715F122C5356E700697898 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		AB84C2372C52379300ED75ED /* iOSFetchExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSFetchExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB84C23A2C52379300ED75ED /* iOSFetchExerciseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSFetchExerciseApp.swift; sourceTree = "<group>"; };
 		AB84C23C2C52379300ED75ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,6 +95,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB715F052C534D6800697898 /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB715F072C534FC200697898 /* MealModelTests.swift */,
+				AB715F092C534FD000697898 /* MealDetailModelTests.swift */,
+			);
+			path = ModelTests;
+			sourceTree = "<group>";
+		};
+		AB715F062C534D7C00697898 /* ViewModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB715F0B2C5351C800697898 /* MealViewModelTests.swift */,
+				AB715F0D2C53525400697898 /* MealDetailViewModelTests.swift */,
+			);
+			path = ViewModelTests;
+			sourceTree = "<group>";
+		};
+		AB715F0F2C53531F00697898 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AB715F102C53533A00697898 /* URLSessionProtocol.swift */,
+				AB715F122C5356E700697898 /* MockURLSession.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		AB84C22E2C52379300ED75ED = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +145,7 @@
 		AB84C2392C52379300ED75ED /* iOSFetchExercise */ = {
 			isa = PBXGroup;
 			children = (
+				AB715F0F2C53531F00697898 /* Utilities */,
 				AB84C2662C52381500ED75ED /* Views */,
 				AB84C2652C52380E00ED75ED /* ViewModels */,
 				AB84C2642C52380600ED75ED /* Models */,
@@ -128,6 +168,8 @@
 		AB84C24A2C52379E00ED75ED /* iOSFetchExerciseTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB715F062C534D7C00697898 /* ViewModelTests */,
+				AB715F052C534D6800697898 /* ModelTests */,
 				AB84C24B2C52379E00ED75ED /* iOSFetchExerciseTests.swift */,
 			);
 			path = iOSFetchExerciseTests;
@@ -299,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB715F112C53533A00697898 /* URLSessionProtocol.swift in Sources */,
 				AB84C23D2C52379300ED75ED /* ContentView.swift in Sources */,
 				AB84C2692C52384000ED75ED /* MealModel.swift in Sources */,
 				AB84C23B2C52379300ED75ED /* iOSFetchExerciseApp.swift in Sources */,
@@ -306,6 +349,7 @@
 				AB84C26D2C523B5600ED75ED /* MealsViewModel.swift in Sources */,
 				AB84C2712C523BD400ED75ED /* MealDetailView.swift in Sources */,
 				AB84C26F2C523B7800ED75ED /* MealDetailViewModel.swift in Sources */,
+				AB715F132C5356E700697898 /* MockURLSession.swift in Sources */,
 				AB84C26B2C52386500ED75ED /* MealDetailModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +358,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB715F082C534FC200697898 /* MealModelTests.swift in Sources */,
+				AB715F0E2C53525400697898 /* MealDetailViewModelTests.swift in Sources */,
+				AB715F0C2C5351C800697898 /* MealViewModelTests.swift in Sources */,
+				AB715F0A2C534FD000697898 /* MealDetailModelTests.swift in Sources */,
 				AB84C24C2C52379E00ED75ED /* iOSFetchExerciseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,9 @@ class MealsViewModel: ObservableObject {
     @Published var meals: [MealModel] = []
     @Published var errorMessage: String?
     
+    //might remove
+    var urlSession: URLSessionProtocol = URLSession.shared
+
     /// Fetches the list of dessert meals from the API
     func fetchMeals() async {
         do {
@@ -22,7 +25,7 @@ class MealsViewModel: ObservableObject {
             let url = URL(string: "https://themealdb.com/api/json/v1/1/filter.php?c=Dessert")!
             
             // Perform the network request
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, _) = try await urlSession.data(from: url)
             
             // Decode the response data
             let response = try JSONDecoder().decode(MealResponse.self, from: data)
@@ -51,3 +54,5 @@ class MealsViewModel: ObservableObject {
         }
     }
 }
+
+

@@ -5,6 +5,7 @@
 //  Created by Younis on 7/25/24.
 //
 
+
 import SwiftUI
 
 // MARK: - MealDetailViewModel
@@ -15,6 +16,9 @@ class MealDetailViewModel: ObservableObject {
     @Published var mealDetail: MealDetailModel?
     @Published var errorMessage: String?
     
+    //might remove
+    var urlSession: URLSessionProtocol = URLSession.shared
+    
     /// Fetches detailed information for a specific meal
     /// - Parameter id: The ID of the meal to fetch
     func fetchMealDetail(id: String) async {
@@ -23,7 +27,7 @@ class MealDetailViewModel: ObservableObject {
             let url = URL(string: "https://themealdb.com/api/json/v1/1/lookup.php?i=\(id)")!
             
             // Perform the network request
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, _) = try await urlSession.data(from: url)
             
             // Decode the response data
             let response = try JSONDecoder().decode(MealDetailResponse.self, from: data)
