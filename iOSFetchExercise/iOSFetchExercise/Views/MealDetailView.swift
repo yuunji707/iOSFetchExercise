@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-// MARK: - MealDetailView
-
-/// A view displaying detailed information about a specific meal
 struct MealDetailView: View {
     let mealId: String
     @StateObject private var viewModel = MealDetailViewModel()
@@ -29,10 +26,22 @@ struct MealDetailView: View {
                 .shadow(radius: 10)
                 
                 VStack(alignment: .leading, spacing: 16) {
-                    // Meal Name
-                    Text(viewModel.mealDetail?.strMeal ?? "")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
+                    // Meal Name and Favorite Button
+                    HStack {
+                        Text(viewModel.mealDetail?.strMeal ?? "")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            viewModel.toggleFavorite()
+                        }) {
+                            Image(systemName: viewModel.isFavorite ? "star.fill" : "star")
+                                .foregroundColor(viewModel.isFavorite ? .yellow : .gray)
+                                .font(.title)
+                        }
+                    }
                     
                     // Area
                     if let area = viewModel.mealDetail?.strArea {
@@ -110,11 +119,10 @@ struct MealDetailView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        // Fetch meal details when the view appears
         .task {
             await viewModel.fetchMealDetail(id: mealId)
+            viewModel.checkFavoriteStatus()
         }
-        // Display an alert if there's an error
         .alert("Error", isPresented: Binding.constant(viewModel.errorMessage != nil), actions: {
             Button("OK", role: .cancel) {}
         }, message: {
@@ -122,8 +130,6 @@ struct MealDetailView: View {
         })
     }
 }
-
-// MARK: - MealDetailView_Previews
 
 struct MealDetailView_Previews: PreviewProvider {
     static var previews: some View {

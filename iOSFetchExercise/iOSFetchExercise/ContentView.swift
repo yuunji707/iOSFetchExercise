@@ -26,7 +26,7 @@ struct ContentView: View {
             }
             
             NavigationView {
-                FavoritesView()
+                FavoriteMealsView()
             }
             .tabItem {
                 Label("Favorites", systemImage: "star")
@@ -40,14 +40,6 @@ struct ContentView: View {
             UITabBar.appearance().scrollEdgeAppearance = appearance
             UITabBar.appearance().standardAppearance = appearance
         }
-    }
-}
-
-/// A placeholder view for the Favorites tab
-struct FavoritesView: View {
-    var body: some View {
-        Text("Favorites View")
-            .navigationTitle("Favorites")
     }
 }
 
