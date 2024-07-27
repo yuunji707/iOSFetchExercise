@@ -1,49 +1,68 @@
-# iOS Dessert Recipe App
+# iOS Fetch Exercise
 
-This iOS app allows users to browse dessert recipes using the [TheMealDB API](https://themealdb.com/api.php). Users can view a list of desserts and tap on any dessert to see its detailed recipe.
+## Overview
+
+This iOS app allows users to browse dessert recipes using the MealDB API. Users can view a list of dessert meals, search for specific desserts, view detailed information about each meal, and save their favorite recipes.
 
 ## Features
 
-- Display a list of dessert meals sorted alphabetically
-- View detailed information for each dessert, including:
+- Browse a list of dessert meals sorted alphabetically
+- Search functionality to filter desserts
+- Detailed view for each meal, including:
   - Meal name
   - Instructions
   - Ingredients with measurements
-- Asynchronous image loading
-- Error handling with user-friendly alerts
+  - Area of origin
+  - Tags
+  - YouTube link (if available)
+  - Source link (if available)
+- Favorite meals functionality
+- Random meal generator
 
-## Architecture
+## Technologies Used
 
-This project follows the MVVM (Model-View-ViewModel) architecture pattern and is built using SwiftUI.
-
-### Project Structure
-
-- `ContentView.swift`: The main view of the application
-- `MealView.swift`: Displays the list of dessert meals
-- `MealDetailView.swift`: Shows detailed information about a selected meal
-- `MealModel.swift`: Defines the data model for a meal
-- `MealDetailModel.swift`: Defines the data model for detailed meal information
-- `MealsViewModel.swift`: Manages the data and business logic for the meal list
-- `MealDetailViewModel.swift`: Manages the data and business logic for the meal details
+- Swift 5
+- SwiftUI
+- Swift Concurrency (async/await) for asynchronous operations
+- MVVM (Model-View-ViewModel) architecture
 
 ## Requirements
 
 - iOS 15.0+
 - Xcode 13.0+
-- Swift 5.5+
 
 ## Installation
 
-1. Clone this repository
-2. Open the project in Xcode
-3. Build and run the project on your simulator or device
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/ios-fetch-exercise.git
+   ```
+2. Open the project in Xcode:
+   ```
+   cd ios-fetch-exercise
+   open iOSFetchExercise.xcodeproj
+   ```
+3. Build and run the project in Xcode using a simulator or connected device.
 
-## API Endpoints
+## Project Structure
 
-The app uses the following API endpoints:
+- `iOSFetchExerciseApp.swift`: Main app entry point
+- `ContentView.swift`: Main container view with tab navigation
+- `MealView.swift`: Displays the list of dessert meals
+- `MealDetailView.swift`: Shows detailed information about a selected meal
+- `RandomMealView.swift`: Generates and displays a random meal
+- `FavoriteMealsView.swift`: Shows the user's favorite meals
+- `APIService.swift`: Handles API requests to the MealDB
+- `Models`: Contains data models for meals and API responses
+- `ViewModels`: Contains view models for managing app state and business logic
 
-- Dessert list: `https://themealdb.com/api/json/v1/1/filter.php?c=Dessert`
-- Meal details: `https://themealdb.com/api/json/v1/1/lookup.php?i=MEAL_ID`
+## API Integration
+
+This app uses the following endpoints from the MealDB API:
+
+- `https://themealdb.com/api/json/v1/1/filter.php?c=Dessert`: Fetches the list of meals in the Dessert category
+- `https://themealdb.com/api/json/v1/1/lookup.php?i=MEAL_ID`: Fetches meal details by ID
+- `https://www.themealdb.com/api/json/v1/1/random.php`: Fetches a random meal
 
 ## Implementation Details
 
