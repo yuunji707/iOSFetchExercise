@@ -32,7 +32,7 @@ struct MealDetailModel: Identifiable, Codable {
         case idMeal, strMeal, strInstructions, strMealThumb, strYoutube, strSource, strTags, strArea
     }
     
-    // Custom decoding to handle dynamic ingredient and measure keys
+    /// Custom decoding to handle dynamic ingredient and measure keys
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         idMeal = try container.decode(String.self, forKey: .idMeal)
@@ -58,7 +58,7 @@ struct MealDetailModel: Identifiable, Codable {
         }
     }
     
-    // Custom encoding to handle dynamic ingredient and measure keys
+    /// Custom encoding to handle dynamic ingredient and measure keys
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(idMeal, forKey: .idMeal)

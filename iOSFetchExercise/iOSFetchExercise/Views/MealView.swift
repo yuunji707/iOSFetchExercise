@@ -129,6 +129,7 @@ struct MealCard: View {
     }
 }
 
+// Preview provider for MealView
 struct MealView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {

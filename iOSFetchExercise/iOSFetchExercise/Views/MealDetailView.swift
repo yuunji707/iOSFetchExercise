@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A view displaying detailed information about a specific meal
 struct MealDetailView: View {
     let mealId: String
     @StateObject private var viewModel = MealDetailViewModel()
@@ -120,6 +121,7 @@ struct MealDetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .task {
+            // Fetch meal details when view appears
             await viewModel.fetchMealDetail(id: mealId)
             viewModel.checkFavoriteStatus()
         }
@@ -131,6 +133,7 @@ struct MealDetailView: View {
     }
 }
 
+// Preview provider for MealDetailView
 struct MealDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
