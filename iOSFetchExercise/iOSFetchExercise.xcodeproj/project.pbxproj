@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB2746912C54742000C8D85F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2746902C54742000C8D85F /* APIService.swift */; };
+		AB2746932C54839100C8D85F /* RandomMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2746922C54839100C8D85F /* RandomMealView.swift */; };
+		AB2746952C5483B700C8D85F /* RandomMealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2746942C5483B700C8D85F /* RandomMealViewModel.swift */; };
 		AB715F082C534FC200697898 /* MealModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F072C534FC200697898 /* MealModelTests.swift */; };
 		AB715F0A2C534FD000697898 /* MealDetailModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F092C534FD000697898 /* MealDetailModelTests.swift */; };
 		AB715F0C2C5351C800697898 /* MealViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F0B2C5351C800697898 /* MealViewModelTests.swift */; };
 		AB715F0E2C53525400697898 /* MealDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F0D2C53525400697898 /* MealDetailViewModelTests.swift */; };
-		AB715F112C53533A00697898 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F102C53533A00697898 /* URLSessionProtocol.swift */; };
 		AB715F132C5356E700697898 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F122C5356E700697898 /* MockURLSession.swift */; };
 		AB84C23B2C52379300ED75ED /* iOSFetchExerciseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB84C23A2C52379300ED75ED /* iOSFetchExerciseApp.swift */; };
 		AB84C23D2C52379300ED75ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB84C23C2C52379300ED75ED /* ContentView.swift */; };
@@ -46,11 +48,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB2746902C54742000C8D85F /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		AB2746922C54839100C8D85F /* RandomMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMealView.swift; sourceTree = "<group>"; };
+		AB2746942C5483B700C8D85F /* RandomMealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMealViewModel.swift; sourceTree = "<group>"; };
 		AB715F072C534FC200697898 /* MealModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModelTests.swift; sourceTree = "<group>"; };
 		AB715F092C534FD000697898 /* MealDetailModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailModelTests.swift; sourceTree = "<group>"; };
 		AB715F0B2C5351C800697898 /* MealViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModelTests.swift; sourceTree = "<group>"; };
 		AB715F0D2C53525400697898 /* MealDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewModelTests.swift; sourceTree = "<group>"; };
-		AB715F102C53533A00697898 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		AB715F122C5356E700697898 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		AB84C2372C52379300ED75ED /* iOSFetchExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSFetchExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB84C23A2C52379300ED75ED /* iOSFetchExerciseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSFetchExerciseApp.swift; sourceTree = "<group>"; };
@@ -95,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB27468F2C54740F00C8D85F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AB2746902C54742000C8D85F /* APIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		AB715F052C534D6800697898 /* ModelTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,7 +128,6 @@
 		AB715F0F2C53531F00697898 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				AB715F102C53533A00697898 /* URLSessionProtocol.swift */,
 				AB715F122C5356E700697898 /* MockURLSession.swift */,
 			);
 			path = Utilities;
@@ -145,6 +156,7 @@
 		AB84C2392C52379300ED75ED /* iOSFetchExercise */ = {
 			isa = PBXGroup;
 			children = (
+				AB27468F2C54740F00C8D85F /* Services */,
 				AB715F0F2C53531F00697898 /* Utilities */,
 				AB84C2662C52381500ED75ED /* Views */,
 				AB84C2652C52380E00ED75ED /* ViewModels */,
@@ -198,6 +210,7 @@
 			children = (
 				AB84C26C2C523B5600ED75ED /* MealsViewModel.swift */,
 				AB84C26E2C523B7800ED75ED /* MealDetailViewModel.swift */,
+				AB2746942C5483B700C8D85F /* RandomMealViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -207,6 +220,7 @@
 			children = (
 				AB84C2702C523BD400ED75ED /* MealDetailView.swift */,
 				AB84C2722C524EA000ED75ED /* MealView.swift */,
+				AB2746922C54839100C8D85F /* RandomMealView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,16 +355,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB715F112C53533A00697898 /* URLSessionProtocol.swift in Sources */,
 				AB84C23D2C52379300ED75ED /* ContentView.swift in Sources */,
 				AB84C2692C52384000ED75ED /* MealModel.swift in Sources */,
 				AB84C23B2C52379300ED75ED /* iOSFetchExerciseApp.swift in Sources */,
+				AB2746912C54742000C8D85F /* APIService.swift in Sources */,
 				AB84C2732C524EA000ED75ED /* MealView.swift in Sources */,
 				AB84C26D2C523B5600ED75ED /* MealsViewModel.swift in Sources */,
 				AB84C2712C523BD400ED75ED /* MealDetailView.swift in Sources */,
 				AB84C26F2C523B7800ED75ED /* MealDetailViewModel.swift in Sources */,
+				AB2746952C5483B700C8D85F /* RandomMealViewModel.swift in Sources */,
 				AB715F132C5356E700697898 /* MockURLSession.swift in Sources */,
 				AB84C26B2C52386500ED75ED /* MealDetailModel.swift in Sources */,
+				AB2746932C54839100C8D85F /* RandomMealView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
