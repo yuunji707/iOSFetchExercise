@@ -105,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB0191232C54D8CA00EAB40A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				AB175A852C54D13C00284D98 /* FavoritesManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		AB27468F2C54740F00C8D85F /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				AB715F122C5356E700697898 /* MockURLSession.swift */,
-				AB175A852C54D13C00284D98 /* FavoritesManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -163,6 +170,7 @@
 		AB84C2392C52379300ED75ED /* iOSFetchExercise */ = {
 			isa = PBXGroup;
 			children = (
+				AB0191232C54D8CA00EAB40A /* Managers */,
 				AB27468F2C54740F00C8D85F /* Services */,
 				AB715F0F2C53531F00697898 /* Utilities */,
 				AB84C2662C52381500ED75ED /* Views */,
