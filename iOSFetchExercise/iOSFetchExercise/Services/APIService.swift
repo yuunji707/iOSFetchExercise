@@ -35,8 +35,16 @@ class APIService {
     func fetchMealDetail(id: String) async throws -> MealDetailModel? {
         let url = URL(string: "https://themealdb.com/api/json/v1/1/lookup.php?i=\(id)")!
         let (data, _) = try await urlSession.data(from: url)
-        let response = try JSONDecoder().decode(MealDetailResponse.self, from: data)
-        return response.meals.first
+        
+        // First, decode into a dictionary
+        let json = try JSONDecoder().decode([String: [MealDetailModel]?].self, from: data)
+        
+        // Check if 'meals' key exists and is not null
+        if let meals = json["meals"], let firstMeal = meals?.first {
+            return firstMeal
+        } else {
+            return nil
+        }
     }
     
     /// Fetches a random meal ID from the API

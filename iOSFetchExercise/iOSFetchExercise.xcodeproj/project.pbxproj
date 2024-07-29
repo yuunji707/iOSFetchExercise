@@ -17,6 +17,7 @@
 		AB2746932C54839100C8D85F /* RandomMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2746922C54839100C8D85F /* RandomMealView.swift */; };
 		AB2746952C5483B700C8D85F /* RandomMealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2746942C5483B700C8D85F /* RandomMealViewModel.swift */; };
 		AB3D931A2C5793F600427B6F /* TestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3D93192C5793F600427B6F /* TestUtilities.swift */; };
+		AB3D931D2C5799CD00427B6F /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3D931C2C5799CD00427B6F /* APIServiceTests.swift */; };
 		AB715F082C534FC200697898 /* MealModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F072C534FC200697898 /* MealModelTests.swift */; };
 		AB715F0A2C534FD000697898 /* MealDetailModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F092C534FD000697898 /* MealDetailModelTests.swift */; };
 		AB715F0C2C5351C800697898 /* MealViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB715F0B2C5351C800697898 /* MealViewModelTests.swift */; };
@@ -64,6 +65,7 @@
 		AB2746922C54839100C8D85F /* RandomMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMealView.swift; sourceTree = "<group>"; };
 		AB2746942C5483B700C8D85F /* RandomMealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMealViewModel.swift; sourceTree = "<group>"; };
 		AB3D93192C5793F600427B6F /* TestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtilities.swift; sourceTree = "<group>"; };
+		AB3D931C2C5799CD00427B6F /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		AB715F072C534FC200697898 /* MealModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModelTests.swift; sourceTree = "<group>"; };
 		AB715F092C534FD000697898 /* MealDetailModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailModelTests.swift; sourceTree = "<group>"; };
 		AB715F0B2C5351C800697898 /* MealViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModelTests.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 				AB2746902C54742000C8D85F /* APIService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		AB3D931B2C5799BB00427B6F /* ServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB3D931C2C5799CD00427B6F /* APIServiceTests.swift */,
+			);
+			path = ServiceTests;
 			sourceTree = "<group>";
 		};
 		AB715F052C534D6800697898 /* ModelTests */ = {
@@ -211,6 +221,7 @@
 		AB84C24A2C52379E00ED75ED /* iOSFetchExerciseTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB3D931B2C5799BB00427B6F /* ServiceTests */,
 				AB0191282C56DE3600EAB40A /* ManagerTests */,
 				AB715F062C534D7C00697898 /* ViewModelTests */,
 				AB715F052C534D6800697898 /* ModelTests */,
@@ -417,6 +428,7 @@
 				AB01912A2C56DE4C00EAB40A /* FavoritesManagerTests.swift in Sources */,
 				AB0191252C56DD1E00EAB40A /* RandomMealViewModelTests.swift in Sources */,
 				AB715F0C2C5351C800697898 /* MealViewModelTests.swift in Sources */,
+				AB3D931D2C5799CD00427B6F /* APIServiceTests.swift in Sources */,
 				AB715F0A2C534FD000697898 /* MealDetailModelTests.swift in Sources */,
 				AB84C24C2C52379E00ED75ED /* iOSFetchExerciseTests.swift in Sources */,
 			);
