@@ -23,8 +23,8 @@ class FavoriteMealsViewModelTests: XCTestCase {
     }
     
     func testLoadFavorites() {
-        let meal1 = createMealDetailModel(id: "1", name: "Apple Pie")
-        let meal2 = createMealDetailModel(id: "2", name: "Chocolate Cake")
+        let meal1 = TestUtilities.createMealDetailModel(id: "1", name: "Apple Pie")
+        let meal2 = TestUtilities.createMealDetailModel(id: "2", name: "Chocolate Cake")
         FavoritesManager.shared.addFavorite(meal: meal1)
         FavoritesManager.shared.addFavorite(meal: meal2)
         
@@ -36,8 +36,8 @@ class FavoriteMealsViewModelTests: XCTestCase {
     }
     
     func testFilteredMealsEmptySearchText() {
-        let meal1 = createMealDetailModel(id: "1", name: "Apple Pie")
-        let meal2 = createMealDetailModel(id: "2", name: "Chocolate Cake")
+        let meal1 = TestUtilities.createMealDetailModel(id: "1", name: "Apple Pie")
+        let meal2 = TestUtilities.createMealDetailModel(id: "2", name: "Chocolate Cake")
         FavoritesManager.shared.addFavorite(meal: meal1)
         FavoritesManager.shared.addFavorite(meal: meal2)
         
@@ -48,8 +48,8 @@ class FavoriteMealsViewModelTests: XCTestCase {
     }
     
     func testFilteredMealsWithSearchText() {
-        let meal1 = createMealDetailModel(id: "1", name: "Apple Pie")
-        let meal2 = createMealDetailModel(id: "2", name: "Chocolate Cake")
+        let meal1 = TestUtilities.createMealDetailModel(id: "1", name: "Apple Pie")
+        let meal2 = TestUtilities.createMealDetailModel(id: "2", name: "Chocolate Cake")
         FavoritesManager.shared.addFavorite(meal: meal1)
         FavoritesManager.shared.addFavorite(meal: meal2)
         
@@ -60,26 +60,10 @@ class FavoriteMealsViewModelTests: XCTestCase {
         XCTAssertEqual(filtered.first?.strMeal, "Apple Pie")
     }
     
-    private func createMealDetailModel(id: String, name: String) -> MealDetailModel {
-        let json = """
-        {
-            "idMeal": "\(id)",
-            "strMeal": "\(name)",
-            "strInstructions": "Test Instructions",
-            "strMealThumb": "https://example.com/thumb.jpg",
-            "strIngredient1": "Ingredient1",
-            "strMeasure1": "Measure1"
-        }
-        """.data(using: .utf8)!
-        
-        let decoder = JSONDecoder()
-        return try! decoder.decode(MealDetailModel.self, from: json)
-    }
-    
     private func clearAllFavorites() {
         let favorites = FavoritesManager.shared.getFavorites()
         for favorite in favorites {
-            let meal = createMealDetailModel(id: favorite.idMeal, name: favorite.strMeal)
+            let meal = TestUtilities.createMealDetailModel(id: favorite.idMeal, name: favorite.strMeal)
             FavoritesManager.shared.removeFavorite(meal: meal)
         }
     }

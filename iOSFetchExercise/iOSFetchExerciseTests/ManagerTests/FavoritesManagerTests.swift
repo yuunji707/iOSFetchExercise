@@ -19,24 +19,8 @@ class FavoritesManagerTests: XCTestCase {
         UserDefaults.standard.removeObject(forKey: "FavoriteMeals")
     }
     
-    func createMealDetailModel(id: String, name: String) -> MealDetailModel {
-        let json = """
-        {
-            "idMeal": "\(id)",
-            "strMeal": "\(name)",
-            "strInstructions": "Test Instructions",
-            "strMealThumb": "https://example.com/thumb.jpg",
-            "strIngredient1": "Ingredient1",
-            "strMeasure1": "Measure1"
-        }
-        """.data(using: .utf8)!
-        
-        let decoder = JSONDecoder()
-        return try! decoder.decode(MealDetailModel.self, from: json)
-    }
-    
     func testAddFavorite() {
-        let mealDetail = createMealDetailModel(id: "1", name: "Test Meal")
+        let mealDetail = TestUtilities.createMealDetailModel(id: "1", name: "Test Meal")
         
         favoritesManager.addFavorite(meal: mealDetail)
         
@@ -45,7 +29,7 @@ class FavoritesManagerTests: XCTestCase {
     }
     
     func testRemoveFavorite() {
-        let mealDetail = createMealDetailModel(id: "1", name: "Test Meal")
+        let mealDetail = TestUtilities.createMealDetailModel(id: "1", name: "Test Meal")
         
         favoritesManager.addFavorite(meal: mealDetail)
         favoritesManager.removeFavorite(meal: mealDetail)
@@ -55,8 +39,8 @@ class FavoritesManagerTests: XCTestCase {
     }
     
     func testGetFavorites() {
-        let mealDetail1 = createMealDetailModel(id: "1", name: "Test Meal 1")
-        let mealDetail2 = createMealDetailModel(id: "2", name: "Test Meal 2")
+        let mealDetail1 = TestUtilities.createMealDetailModel(id: "1", name: "Test Meal 1")
+        let mealDetail2 = TestUtilities.createMealDetailModel(id: "2", name: "Test Meal 2")
         
         favoritesManager.addFavorite(meal: mealDetail1)
         favoritesManager.addFavorite(meal: mealDetail2)
@@ -69,7 +53,7 @@ class FavoritesManagerTests: XCTestCase {
     }
     
     func testAddDuplicateFavorite() {
-        let mealDetail = createMealDetailModel(id: "1", name: "Test Meal")
+        let mealDetail = TestUtilities.createMealDetailModel(id: "1", name: "Test Meal")
         
         favoritesManager.addFavorite(meal: mealDetail)
         favoritesManager.addFavorite(meal: mealDetail)
@@ -78,7 +62,7 @@ class FavoritesManagerTests: XCTestCase {
     }
     
     func testRemoveNonExistentFavorite() {
-        let mealDetail = createMealDetailModel(id: "1", name: "Test Meal")
+        let mealDetail = TestUtilities.createMealDetailModel(id: "1", name: "Test Meal")
         
         favoritesManager.removeFavorite(meal: mealDetail)
         
