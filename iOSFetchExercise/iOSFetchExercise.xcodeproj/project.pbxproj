@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0191252C56DD1E00EAB40A /* RandomMealViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0191242C56DD1E00EAB40A /* RandomMealViewModelTests.swift */; };
+		AB0191272C56DD2D00EAB40A /* FavoriteMealsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0191262C56DD2D00EAB40A /* FavoriteMealsViewModelTests.swift */; };
+		AB01912A2C56DE4C00EAB40A /* FavoritesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0191292C56DE4C00EAB40A /* FavoritesManagerTests.swift */; };
 		AB175A862C54D13C00284D98 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB175A852C54D13C00284D98 /* FavoritesManager.swift */; };
 		AB175A882C54D17100284D98 /* FavoriteMealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB175A872C54D17100284D98 /* FavoriteMealsView.swift */; };
 		AB175A8A2C54D19100284D98 /* FavoriteMealsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB175A892C54D19100284D98 /* FavoriteMealsViewModel.swift */; };
@@ -51,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB0191242C56DD1E00EAB40A /* RandomMealViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMealViewModelTests.swift; sourceTree = "<group>"; };
+		AB0191262C56DD2D00EAB40A /* FavoriteMealsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMealsViewModelTests.swift; sourceTree = "<group>"; };
+		AB0191292C56DE4C00EAB40A /* FavoritesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManagerTests.swift; sourceTree = "<group>"; };
 		AB175A852C54D13C00284D98 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		AB175A872C54D17100284D98 /* FavoriteMealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMealsView.swift; sourceTree = "<group>"; };
 		AB175A892C54D19100284D98 /* FavoriteMealsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMealsViewModel.swift; sourceTree = "<group>"; };
@@ -113,6 +119,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		AB0191282C56DE3600EAB40A /* ManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB0191292C56DE4C00EAB40A /* FavoritesManagerTests.swift */,
+			);
+			path = ManagerTests;
+			sourceTree = "<group>";
+		};
 		AB27468F2C54740F00C8D85F /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +149,8 @@
 			children = (
 				AB715F0B2C5351C800697898 /* MealViewModelTests.swift */,
 				AB715F0D2C53525400697898 /* MealDetailViewModelTests.swift */,
+				AB0191242C56DD1E00EAB40A /* RandomMealViewModelTests.swift */,
+				AB0191262C56DD2D00EAB40A /* FavoriteMealsViewModelTests.swift */,
 			);
 			path = ViewModelTests;
 			sourceTree = "<group>";
@@ -195,6 +211,7 @@
 		AB84C24A2C52379E00ED75ED /* iOSFetchExerciseTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB0191282C56DE3600EAB40A /* ManagerTests */,
 				AB715F062C534D7C00697898 /* ViewModelTests */,
 				AB715F052C534D6800697898 /* ModelTests */,
 				AB84C24B2C52379E00ED75ED /* iOSFetchExerciseTests.swift */,
@@ -396,6 +413,9 @@
 			files = (
 				AB715F082C534FC200697898 /* MealModelTests.swift in Sources */,
 				AB715F0E2C53525400697898 /* MealDetailViewModelTests.swift in Sources */,
+				AB0191272C56DD2D00EAB40A /* FavoriteMealsViewModelTests.swift in Sources */,
+				AB01912A2C56DE4C00EAB40A /* FavoritesManagerTests.swift in Sources */,
+				AB0191252C56DD1E00EAB40A /* RandomMealViewModelTests.swift in Sources */,
 				AB715F0C2C5351C800697898 /* MealViewModelTests.swift in Sources */,
 				AB715F0A2C534FD000697898 /* MealDetailModelTests.swift in Sources */,
 				AB84C24C2C52379E00ED75ED /* iOSFetchExerciseTests.swift in Sources */,

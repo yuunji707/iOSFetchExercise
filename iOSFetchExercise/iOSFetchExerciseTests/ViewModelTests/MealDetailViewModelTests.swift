@@ -15,7 +15,7 @@ class MealDetailViewModelTests: XCTestCase {
         super.setUp()
         mockURLSession = MockURLSession()
         viewModel = MealDetailViewModel()
-        viewModel.urlSession = mockURLSession
+        //viewModel.urlSession = mockURLSession
     }
     
     override func tearDown() {

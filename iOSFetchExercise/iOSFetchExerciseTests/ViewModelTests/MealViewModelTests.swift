@@ -16,7 +16,7 @@ class MealsViewModelTests: XCTestCase {
         try super.setUpWithError()
         mockURLSession = MockURLSession()
         viewModel = MealsViewModel()
-        viewModel.urlSession = mockURLSession
+        //viewModel.urlSession = mockURLSession
     }
 
     override func tearDownWithError() throws {
