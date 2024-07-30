@@ -9,54 +9,62 @@ import SwiftUI
 
 /// A view displaying the user's favorite meals
 struct FavoriteMealsView: View {
-    // ViewModel to manage favorite meals data
     @StateObject private var viewModel = FavoriteMealsViewModel()
-    // State for search text input
     @State private var searchText = ""
     
     var body: some View {
         ZStack {
-            // Set background color
             Color(.systemBackground).edgesIgnoringSafeArea(.all)
             
             VStack {
-                // Search bar for filtering meals
                 SearchBar(text: $searchText)
                     .padding()
                 
-                // Display message if no favorites or filtered results
                 if viewModel.filteredMeals(searchText: searchText).isEmpty {
-                    VStack {
-                        Spacer()
-                        Text("You haven't added any favorites yet")
-                            .font(.headline)
-                            .foregroundColor(.secondary)
-                        Spacer()
-                    }
+                    EmptyFavoritesView()
                 } else {
-                    // Scrollable grid of favorite meals
-                    ScrollView {
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                            ForEach(viewModel.filteredMeals(searchText: searchText)) { meal in
-                                NavigationLink(destination: MealDetailView(mealId: meal.idMeal)) {
-                                    MealCard(meal: meal)
-                                }
-                            }
-                        }
-                        .padding()
-                    }
+                    FavoriteMealsGridView(meals: viewModel.filteredMeals(searchText: searchText))
                 }
             }
         }
         .navigationTitle("Favorites")
         .onAppear {
-            // Load favorites when view appears
             viewModel.loadFavorites()
         }
     }
 }
 
-// Preview provider for FavoriteMealsView
+/// A view displayed when there are no favorites
+struct EmptyFavoritesView: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            Text("You haven't added any favorites yet")
+                .font(.headline)
+                .foregroundColor(.secondary)
+            Spacer()
+        }
+    }
+}
+
+/// A grid view of favorite meals
+struct FavoriteMealsGridView: View {
+    let meals: [MealModel]
+    
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                ForEach(meals) { meal in
+                    NavigationLink(destination: MealDetailView(mealId: meal.idMeal)) {
+                        MealCard(meal: meal)
+                    }
+                }
+            }
+            .padding()
+        }
+    }
+}
+
 struct FavoriteMealsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {

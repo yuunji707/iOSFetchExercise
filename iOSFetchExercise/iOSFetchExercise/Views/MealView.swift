@@ -14,39 +14,42 @@ struct MealView: View {
     
     var body: some View {
         ZStack {
-            // Set the background color
             Color(.systemBackground).edgesIgnoringSafeArea(.all)
             
             VStack {
-                // Search bar
                 SearchBar(text: $searchText)
                     .padding()
                 
-                ScrollView {
-                    // Create a grid layout for meal cards
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                        ForEach(viewModel.filteredMeals(searchText: searchText)) { meal in
-                            // Navigate to meal detail view when tapped
-                            NavigationLink(destination: MealDetailView(mealId: meal.idMeal)) {
-                                MealCard(meal: meal)
-                            }
-                        }
-                    }
-                    .padding()
-                }
+                MealGridView(meals: viewModel.filteredMeals(searchText: searchText))
             }
         }
         .navigationTitle("Desserts")
-        // Fetch meals when the view appears
         .task {
             await viewModel.fetchMeals()
         }
-        // Display an alert if there's an error
         .alert("Error", isPresented: Binding.constant(viewModel.errorMessage != nil), actions: {
             Button("OK", role: .cancel) {}
         }, message: {
             Text(viewModel.errorMessage ?? "Unknown error")
         })
+    }
+}
+
+/// A grid view of meals
+struct MealGridView: View {
+    let meals: [MealModel]
+    
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                ForEach(meals) { meal in
+                    NavigationLink(destination: MealDetailView(mealId: meal.idMeal)) {
+                        MealCard(meal: meal)
+                    }
+                }
+            }
+            .padding()
+        }
     }
 }
 

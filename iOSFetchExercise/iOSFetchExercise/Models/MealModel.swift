@@ -20,6 +20,7 @@ struct MealModel: Identifiable, Codable {
 // MARK: - MealResponse
 
 /// Wrapper struct for API response containing an array of meals
+/// This structure is used to decode the JSON response from the API
 struct MealResponse: Codable {
     let meals: [MealModel]
 }

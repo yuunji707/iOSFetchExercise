@@ -15,106 +15,41 @@ struct MealDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                // Meal Image
-                AsyncImage(url: URL(string: viewModel.mealDetail?.strMealThumb ?? "")) { image in
-                    image.resizable()
-                        .aspectRatio(contentMode: .fill)
-                } placeholder: {
-                    ProgressView()
-                }
-                .frame(height: 300)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .shadow(radius: 10)
+                // Display meal image
+                MealImageView(imageURL: viewModel.mealDetail?.strMealThumb)
                 
                 VStack(alignment: .leading, spacing: 16) {
-                    // Meal Name and Favorite Button
-                    HStack {
-                        Text(viewModel.mealDetail?.strMeal ?? "")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            viewModel.toggleFavorite()
-                        }) {
-                            Image(systemName: viewModel.isFavorite ? "star.fill" : "star")
-                                .foregroundColor(viewModel.isFavorite ? .yellow : .gray)
-                                .font(.title)
-                        }
-                    }
+                    // Display meal name and favorite button
+                    MealHeaderView(mealName: viewModel.mealDetail?.strMeal ?? "",
+                                   isFavorite: viewModel.isFavorite,
+                                   toggleFavorite: viewModel.toggleFavorite)
                     
-                    // Area
+                    // Display meal area if available
                     if let area = viewModel.mealDetail?.strArea {
                         Label(area, systemImage: "mappin.circle.fill")
                             .font(.headline)
                     }
                     
-                    // Tags
-                    if let tags = viewModel.mealDetail?.tagsArray, !tags.isEmpty {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(tags, id: \.self) { tag in
-                                    Text(tag)
-                                        .padding(.horizontal, 10)
-                                        .padding(.vertical, 5)
-                                        .background(Color.blue.opacity(0.1))
-                                        .cornerRadius(20)
-                                }
-                            }
-                        }
-                    }
+                    // Display meal tags
+                    TagsView(tags: viewModel.mealDetail?.tagsArray ?? [])
                     
-                    // YouTube Link
-                    if let youtubeURL = viewModel.mealDetail?.strYoutube, let url = URL(string: youtubeURL) {
-                        Link(destination: url) {
-                            Label("Watch on YouTube", systemImage: "play.circle.fill")
-                        }
-                        .font(.headline)
-                        .foregroundColor(.red)
-                    }
+                    // Display YouTube link if available
+                    LinkView(title: "Watch on YouTube",
+                             url: viewModel.mealDetail?.strYoutube,
+                             icon: "play.circle.fill",
+                             color: .red)
                     
-                    // Source Link
-                    if let sourceURL = viewModel.mealDetail?.strSource, let url = URL(string: sourceURL) {
-                        Link(destination: url) {
-                            Label("View Recipe Source", systemImage: "link.circle.fill")
-                        }
-                        .font(.headline)
-                        .foregroundColor(.blue)
-                    }
+                    // Display source link if available
+                    LinkView(title: "View Recipe Source",
+                             url: viewModel.mealDetail?.strSource,
+                             icon: "link.circle.fill",
+                             color: .blue)
                     
-                    // Instructions
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Instructions")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                        
-                        Text(viewModel.mealDetail?.strInstructions ?? "")
-                            .font(.body)
-                    }
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(15)
+                    // Display cooking instructions
+                    InstructionsView(instructions: viewModel.mealDetail?.strInstructions ?? "")
                     
-                    // Ingredients
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Ingredients")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                        
-                        ForEach(viewModel.mealDetail?.ingredientsWithMeasurements ?? [], id: \.0) { ingredient, measurement in
-                            HStack {
-                                Text("•")
-                                Text(measurement)
-                                    .fontWeight(.semibold)
-                                Text(ingredient)
-                            }
-                            .font(.body)
-                        }
-                    }
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(15)
+                    // Display ingredients and measurements
+                    IngredientsView(ingredients: viewModel.mealDetail?.ingredientsWithMeasurements ?? [])
                 }
                 .padding()
             }
@@ -130,6 +65,128 @@ struct MealDetailView: View {
         }, message: {
             Text(viewModel.errorMessage ?? "Unknown error")
         })
+    }
+}
+
+/// A view for displaying the meal image
+struct MealImageView: View {
+    let imageURL: String?
+    
+    var body: some View {
+        AsyncImage(url: URL(string: imageURL ?? "")) { image in
+            image.resizable()
+                .aspectRatio(contentMode: .fill)
+        } placeholder: {
+            ProgressView()
+        }
+        .frame(height: 300)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .shadow(radius: 10)
+    }
+}
+
+/// A view for displaying the meal name and favorite button
+struct MealHeaderView: View {
+    let mealName: String
+    let isFavorite: Bool
+    let toggleFavorite: () -> Void
+    
+    var body: some View {
+        HStack {
+            Text(mealName)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            
+            Spacer()
+            
+            Button(action: toggleFavorite) {
+                Image(systemName: isFavorite ? "star.fill" : "star")
+                    .foregroundColor(isFavorite ? .yellow : .gray)
+                    .font(.title)
+            }
+        }
+    }
+}
+
+/// A view for displaying meal tags
+struct TagsView: View {
+    let tags: [String]
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(tags, id: \.self) { tag in
+                    Text(tag)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(20)
+                }
+            }
+        }
+    }
+}
+
+/// A view for displaying links (YouTube or source)
+struct LinkView: View {
+    let title: String
+    let url: String?
+    let icon: String
+    let color: Color
+    
+    var body: some View {
+        if let url = url, let linkURL = URL(string: url) {
+            Link(destination: linkURL) {
+                Label(title, systemImage: icon)
+            }
+            .font(.headline)
+            .foregroundColor(color)
+        }
+    }
+}
+
+/// A view for displaying cooking instructions
+struct InstructionsView: View {
+    let instructions: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Instructions")
+                .font(.title2)
+                .fontWeight(.semibold)
+            
+            Text(instructions)
+                .font(.body)
+        }
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(15)
+    }
+}
+
+/// A view for displaying ingredients and measurements
+struct IngredientsView: View {
+    let ingredients: [(String, String)]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Ingredients")
+                .font(.title2)
+                .fontWeight(.semibold)
+            
+            ForEach(ingredients, id: \.0) { ingredient, measurement in
+                HStack {
+                    Text("•")
+                    Text(measurement)
+                        .fontWeight(.semibold)
+                    Text(ingredient)
+                }
+                .font(.body)
+            }
+        }
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(15)
     }
 }
 

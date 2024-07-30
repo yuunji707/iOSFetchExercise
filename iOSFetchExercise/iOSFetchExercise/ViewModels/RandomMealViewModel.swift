@@ -9,14 +9,10 @@ import SwiftUI
 
 /// ViewModel for managing random meal selection
 class RandomMealViewModel: ObservableObject {
-    /// Published property to store the ID of the randomly selected meal
     @Published var randomMealId: String?
-    /// Published property to track loading state
     @Published var isLoading = false
-    /// Published property to store and update error messages
     @Published var errorMessage: String?
     
-    /// Instance of APIService to fetch random meal
     private let apiService = APIService.shared
     
     /// Initializes the ViewModel and fetches a random meal
@@ -38,11 +34,11 @@ class RandomMealViewModel: ObservableObject {
                         self.isLoading = false
                     }
                 } else {
-                    throw NSError(domain: "RandomMealViewModel", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch random meal ID"])
+                    throw NSError(domain: "RandomMealViewModel", code: 0, userInfo: [NSLocalizedDescriptionKey: "No random meal found"])
                 }
             } catch {
                 DispatchQueue.main.async {
-                    self.errorMessage = error.localizedDescription
+                    self.errorMessage = "Failed to fetch random meal: \(error.localizedDescription)"
                     self.isLoading = false
                 }
             }

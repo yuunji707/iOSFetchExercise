@@ -14,38 +14,69 @@ struct RandomMealView: View {
     var body: some View {
         VStack(spacing: 0) {
             if viewModel.isLoading {
-                // Show loading indicator while fetching meal
-                ProgressView()
+                LoadingView()
             } else if let mealId = viewModel.randomMealId {
-                // Display meal details if a random meal has been fetched
-                ScrollView {
-                    MealDetailView(mealId: mealId)
-                }
+                RandomMealContentView(mealId: mealId)
             }
             
-            // Button to fetch a new random meal
-            Button(action: { viewModel.fetchRandomMeal() }) {
-                Text("Get Random Meal")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-            }
-            .disabled(viewModel.isLoading)
+            RandomMealButton(action: viewModel.fetchRandomMeal, isDisabled: viewModel.isLoading)
         }
         .navigationTitle("Random Meal")
-        // Display an alert if there's an error
-        .alert("Error", isPresented: Binding.constant(viewModel.errorMessage != nil), actions: {
-            Button("OK", role: .cancel) {
-                viewModel.errorMessage = nil
-            }
-        }, message: {
-            Text(viewModel.errorMessage ?? "Unknown error")
-        })
+        .alert(item: Binding(
+            get: { viewModel.errorMessage.map { ErrorWrapper(error: $0) } },
+            set: { _ in viewModel.errorMessage = nil }
+        )) { errorWrapper in
+            Alert(
+                title: Text("Error"),
+                message: Text(errorWrapper.error),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 }
 
-// Preview provider for RandomMealView
+/// A view displaying a loading indicator
+struct LoadingView: View {
+    var body: some View {
+        ProgressView()
+    }
+}
+
+/// A view displaying the content of a random meal
+struct RandomMealContentView: View {
+    let mealId: String
+    
+    var body: some View {
+        ScrollView {
+            MealDetailView(mealId: mealId)
+        }
+    }
+}
+
+/// A button for fetching a new random meal
+struct RandomMealButton: View {
+    let action: () -> Void
+    let isDisabled: Bool
+    
+    var body: some View {
+        Button(action: action) {
+            Text("Get Random Meal")
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+        }
+        .disabled(isDisabled)
+        .padding()
+    }
+}
+
+struct ErrorWrapper: Identifiable {
+    let id = UUID()
+    let error: String
+}
+
 struct RandomMealView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {

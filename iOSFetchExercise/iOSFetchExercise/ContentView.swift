@@ -36,12 +36,13 @@ struct ContentView: View {
                 Label("Favorites", systemImage: "star")
             }
         }
-        .accentColor(.blue) // Set the accent color for the tab bar
-        .ignoresSafeArea(edges: .bottom) // Extend the tab bar to the bottom edge
+        .accentColor(.blue) // Set the accent color for the tab bar items
+        .ignoresSafeArea(edges: .bottom) // Extend the tab bar to the bottom edge of the screen
         .onAppear {
             // Configure the tab bar appearance
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
+            // Apply the appearance to both standard and scrollEdge states
             UITabBar.appearance().scrollEdgeAppearance = appearance
             UITabBar.appearance().standardAppearance = appearance
         }
