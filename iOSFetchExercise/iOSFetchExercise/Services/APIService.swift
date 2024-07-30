@@ -15,7 +15,7 @@ class APIService {
     static let shared = APIService()
     
     /// Private initializer to ensure singleton usage
-    private init() {}
+    init() {}
     
     /// URLSession instance for making network requests
     var urlSession: URLSessionProtocol = URLSession.shared

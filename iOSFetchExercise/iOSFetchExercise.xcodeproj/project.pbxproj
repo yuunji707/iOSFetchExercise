@@ -198,7 +198,6 @@
 			children = (
 				AB0191232C54D8CA00EAB40A /* Managers */,
 				AB27468F2C54740F00C8D85F /* Services */,
-				AB715F0F2C53531F00697898 /* Utilities */,
 				AB84C2662C52381500ED75ED /* Views */,
 				AB84C2652C52380E00ED75ED /* ViewModels */,
 				AB84C2642C52380600ED75ED /* Models */,
@@ -221,6 +220,7 @@
 		AB84C24A2C52379E00ED75ED /* iOSFetchExerciseTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB715F0F2C53531F00697898 /* Utilities */,
 				AB3D931B2C5799BB00427B6F /* ServiceTests */,
 				AB0191282C56DE3600EAB40A /* ManagerTests */,
 				AB715F062C534D7C00697898 /* ViewModelTests */,
