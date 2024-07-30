@@ -4,7 +4,7 @@
 
 Hey Fetch engineer!
 
-This is my project, and I hope you enjoy looking through it. I really enjoyed making it, thank you for taking the time to look at it. Please let me know if you have any questions – I'm looking forward to hearing your feedback. **Please note: I developed this on an older 2014 Macbook where the latest XCode version is 14.2. There shouldn't be any compatibility issues but I am mentioning this just in case.**
+This is my project, and I hope you enjoy reviewing through it. I really enjoyed making it, thank you for taking the time to look at it. Please let me know if you have any questions – I am very excited to receive your feedback. **Please note: I developed this on an older 2014 Macbook where the latest XCode version is 14.2. There shouldn't be any compatibility issues but I am mentioning this just in case.**
 
 Check out the [demo video](https://www.loom.com/share/e632307b39034e90afd5804248d31ea1?sid=fed426ca-5647-4720-8d2f-5906a8f5deb1) to see the app in action!
 
