@@ -1,3 +1,11 @@
+//
+//  APIServiceTests.swift
+//  iOSFetchExerciseTests
+//
+//  Created by Younis on 7/28/24.
+//
+
+
 import XCTest
 @testable import iOSFetchExercise
 
@@ -5,6 +13,7 @@ class APIServiceTests: XCTestCase {
     var sut: APIService!
     var mockURLSession: MockURLSession!
 
+    // Set up the test environment before each test
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = APIService.shared
@@ -12,6 +21,7 @@ class APIServiceTests: XCTestCase {
         sut.urlSession = mockURLSession
     }
 
+    // Clean up after each test
     override func tearDownWithError() throws {
         sut = nil
         mockURLSession = nil
@@ -20,6 +30,7 @@ class APIServiceTests: XCTestCase {
 
     // MARK: - Helper Methods
 
+    // Helper method to get mock meal detail data
     func getMockMealDetailData() -> Data {
         return """
         {"meals":[{
@@ -46,6 +57,7 @@ class APIServiceTests: XCTestCase {
 
     // MARK: - fetchMeals Tests
 
+    // Test successful fetching of meals
     func testFetchMeals_Success() async throws {
         // Given
         let mockData = """
@@ -76,6 +88,7 @@ class APIServiceTests: XCTestCase {
         XCTAssertEqual(uniqueMealIDs.count, meals.count, "All meals should have unique IDs")
     }
 
+    // Test fetching meals with empty response
     func testFetchMeals_EmptyResponse() async throws {
         // Given
         let emptyData = """
@@ -91,6 +104,7 @@ class APIServiceTests: XCTestCase {
         XCTAssertTrue(meals.isEmpty)
     }
 
+    // Test fetching meals with invalid JSON
     func testFetchMeals_InvalidJSON() async {
         // Given
         mockURLSession.data = "Invalid JSON".data(using: .utf8)!
@@ -105,6 +119,7 @@ class APIServiceTests: XCTestCase {
         }
     }
 
+    // Test fetching meals with network error
     func testFetchMeals_NetworkError() async {
         // Given
         mockURLSession.error = NSError(domain: NSURLErrorDomain, code: NSURLErrorNotConnectedToInternet, userInfo: nil)
@@ -121,6 +136,7 @@ class APIServiceTests: XCTestCase {
 
     // MARK: - fetchMealDetail Tests
 
+    // Test successful fetching of meal detail
     func testFetchMealDetail_Success() async throws {
         // Given
         mockURLSession.data = getMockMealDetailData()
@@ -147,6 +163,7 @@ class APIServiceTests: XCTestCase {
         XCTAssertEqual(ingredients?.first?.1, "1/4 cup")
     }
 
+    // Test fetching meal detail for non-existent meal
     func testFetchMealDetail_NotFound() async throws {
         // Given
         let notFoundData = """
@@ -162,6 +179,7 @@ class APIServiceTests: XCTestCase {
         XCTAssertNil(mealDetail)
     }
 
+    // Test fetching meal detail with invalid JSON
     func testFetchMealDetail_InvalidJSON() async {
         // Given
         mockURLSession.data = "Invalid JSON".data(using: .utf8)!
@@ -176,6 +194,7 @@ class APIServiceTests: XCTestCase {
         }
     }
 
+    // Test fetching meal detail with network error
     func testFetchMealDetail_NetworkError() async {
         // Given
         mockURLSession.error = NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut, userInfo: nil)
@@ -192,6 +211,7 @@ class APIServiceTests: XCTestCase {
 
     // MARK: - fetchRandomMealID Tests
 
+    // Test successful fetching of random meal ID
     func testFetchRandomMealID_Success() async throws {
         // Given
         mockURLSession.data = getMockMealDetailData()
@@ -205,6 +225,7 @@ class APIServiceTests: XCTestCase {
         XCTAssertEqual(randomMealID, "52771")
     }
 
+    // Test fetching random meal ID with empty response
     func testFetchRandomMealID_EmptyResponse() async throws {
         // Given
         let emptyData = """
@@ -220,6 +241,7 @@ class APIServiceTests: XCTestCase {
         XCTAssertNil(randomMealID)
     }
 
+    // Test fetching random meal ID with invalid JSON
     func testFetchRandomMealID_InvalidJSON() async {
         // Given
         mockURLSession.data = "Invalid JSON".data(using: .utf8)!
@@ -234,6 +256,7 @@ class APIServiceTests: XCTestCase {
         }
     }
 
+    // Test fetching random meal ID with network error
     func testFetchRandomMealID_NetworkError() async {
         // Given
         mockURLSession.error = NSError(domain: NSURLErrorDomain, code: NSURLErrorCannotConnectToHost, userInfo: nil)
@@ -249,6 +272,7 @@ class APIServiceTests: XCTestCase {
     }
 }
 
+// Mock URLSession for testing
 class MockURLSession: URLSessionProtocol {
     var data: Data?
     var error: Error?
