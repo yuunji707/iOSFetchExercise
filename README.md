@@ -4,7 +4,7 @@
 
 Hey Fetch engineer!
 
-This is my project, and I hope you enjoy looking through it. I really enjoyed making it. Please let me know if you have any questions – I'm looking forward to hearing your feedback.
+This is my project, and I hope you enjoy looking through it. I really enjoyed making it, thank you for taking the time to look at it. Please let me know if you have any questions – I'm looking forward to hearing your feedback. 
 
 Check out the [demo video](https://youtu.be/your_demo_video_id) to see the app in action!
 
