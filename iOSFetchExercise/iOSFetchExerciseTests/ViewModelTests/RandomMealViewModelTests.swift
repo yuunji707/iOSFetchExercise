@@ -59,6 +59,5 @@ class RandomMealViewModelTests: XCTestCase {
         //    - viewModel.isLoading is true (assuming fetchRandomMeal is called in init)
         //    - viewModel.randomMealId is nil
         //    - viewModel.errorMessage is nil
-        // Note: This test checks the initial state before any async operations complete
     }
 }
