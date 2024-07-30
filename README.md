@@ -2,6 +2,11 @@
 
 A SwiftUI-based iOS application that allows users to browse dessert recipes, view detailed meal information, save favorites, and discover random meals. This app demonstrates modern iOS development practices, including async/await for network calls, MVVM architecture, and SwiftUI for the user interface.
 
+## Requirements
+
+- Xcode 14.2 or later
+- iOS 16.0+ (Tested on iPhone 14 Pro simulator)
+
 ## Setup Instructions
 
 1. **Clone the repository**
@@ -18,6 +23,7 @@ A SwiftUI-based iOS application that allows users to browse dessert recipes, vie
 
 3. **Select a simulator or device**
    - In Xcode, select your target device from the scheme menu in the top left corner.
+   - The app has been tested on the iPhone 14 Pro simulator.
 
 4. **Build and run the project**
    - Press `Cmd + R` or click the "Play" button in Xcode to build and run the app.
