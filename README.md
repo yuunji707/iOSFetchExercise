@@ -9,7 +9,6 @@ This is my project, and I hope you enjoy looking through it. I really enjoyed ma
 Check out the [demo video](https://youtu.be/your_demo_video_id) to see the app in action!
 
 Best,
-
 Younis
 
 ## Overview
