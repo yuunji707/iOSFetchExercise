@@ -6,8 +6,11 @@ A SwiftUI-based iOS application that allows users to browse dessert recipes, vie
 
 1. **Clone the repository**
    ```
-   git clone https://github.com/yourusername/iOSFetchExercise.git
-   cd iOSFetchExercise
+   SSH (recommended):
+   git clone git@github.com:yuunji707/iOSFetchExercise.git
+   
+   or HTTPS:
+   git clone https://github.com/yuunji707/iOSFetchExercise.git
    ```
 
 2. **Open the project in Xcode**
